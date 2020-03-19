@@ -1,6 +1,7 @@
 import pandas as pd
 
 from sklearn import model_selection
+from sklearn import ensemble
 
 # Load CSV data set into a pandas dataframe
 iris_df = pd.read_csv('../iris.csv')
@@ -29,3 +30,31 @@ y_virginica = virginica_values_df.values
 X_setosa_train, X_setosa_test, y_setosa_train, y_setosa_test = model_selection.train_test_split(X, y_setosa, test_size=0.3)
 X_versicolor_train, X_versicolor_test, y_versicolor_train, y_versicolor_test = model_selection.train_test_split(X, y_versicolor, test_size=0.3)
 X_virginica_train, X_virginica_test, y_virginica_train, y_virginica_test = model_selection.train_test_split(X, y_virginica, test_size=0.3)
+
+# Create a model for each iris class
+setosa_model = ensemble.GradientBoostingRegressor(
+    n_estimators=1000,
+    learning_rate=0.1,
+    max_depth=6,
+    min_samples_leaf=9,
+    max_features=0.1,
+    loss='huber'
+)
+
+versicolor_model = ensemble.GradientBoostingRegressor(
+    n_estimators=1000,
+    learning_rate=0.1,
+    max_depth=6,
+    min_samples_leaf=9,
+    max_features=0.1,
+    loss='huber'
+)
+
+virginica_model = ensemble.GradientBoostingRegressor(
+    n_estimators=1000,
+    learning_rate=0.1,
+    max_depth=6,
+    min_samples_leaf=9,
+    max_features=0.1,
+    loss='huber'
+)
