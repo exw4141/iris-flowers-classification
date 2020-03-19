@@ -1,5 +1,7 @@
 import pandas as pd
 
+from sklearn import model_selection
+
 # Load CSV data set into a pandas dataframe
 iris_df = pd.read_csv('../iris.csv')
 
@@ -22,3 +24,8 @@ X = encoded_iris_df.values
 y_setosa = setosa_values_df.values
 y_versicolor = versicolor_values_df.values
 y_virginica = virginica_values_df.values
+
+# Shuffle each output data set and split them into training and test data sets
+X_setosa_train, X_setosa_test, y_setosa_train, y_setosa_test = model_selection.train_test_split(X, y_setosa, test_size=0.3)
+X_versicolor_train, X_versicolor_test, y_versicolor_train, y_versicolor_test = model_selection.train_test_split(X, y_versicolor, test_size=0.3)
+X_virginica_train, X_virginica_test, y_virginica_train, y_virginica_test = model_selection.train_test_split(X, y_virginica, test_size=0.3)
