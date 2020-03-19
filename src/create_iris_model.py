@@ -2,6 +2,7 @@ import pandas as pd
 
 from sklearn import model_selection
 from sklearn import ensemble
+from sklearn import metrics
 
 import joblib
 
@@ -19,6 +20,25 @@ def train_model(iris_name, model, X, y):
 
     pkl_filename = "../models/trained_iris_{}_model.pkl".format(iris_name)
     joblib.dump(model, pkl_filename)
+
+
+def calculate_mean_absolute_error(iris_name, model, X_training, y_training, X_test, y_test):
+    """
+    Calculates the mean absolute error for the given model by comparing its predictions on the given training and test
+    data sets with the their respective expected outputs
+
+    iris_name -- Name of the iris flower that the model is trained to classify
+    model -- The trained model
+    X_training -- The feature training data set of a specific iris flower class
+    y_training -- The output values of the training data set
+    X_test -- The feature test data set of a specific iris flower class
+    y_test -- The output values of the test data set
+    """
+    training_mae = metrics.mean_absolute_error(y_training, model.predict(X_training))
+    print("%s training set mean absolute error: %.2f" % (iris_name, training_mae))
+
+    test_mae = metrics.mean_absolute_error(y_test, model.predict(X_test))
+    print("%s test set mean absolute error: %.2f\n" % (iris_name, test_mae))
 
 
 # Load CSV data set into a pandas dataframe
@@ -80,3 +100,7 @@ virginica_model = ensemble.GradientBoostingRegressor(
 train_model("setosa", setosa_model, X_setosa_train, y_setosa_train)
 train_model("versicolor", versicolor_model, X_versicolor_train, y_versicolor_train)
 train_model("virginica", virginica_model, X_virginica_train, y_virginica_train)
+
+calculate_mean_absolute_error("Setosa", setosa_model, X_setosa_train, y_setosa_train, X_setosa_test, y_setosa_test)
+calculate_mean_absolute_error("Versicolor", versicolor_model, X_versicolor_train, y_versicolor_train, X_versicolor_test, y_versicolor_test)
+calculate_mean_absolute_error("Virginica", virginica_model, X_virginica_train, y_virginica_train, X_virginica_test, y_virginica_test)
