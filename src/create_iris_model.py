@@ -3,6 +3,24 @@ import pandas as pd
 from sklearn import model_selection
 from sklearn import ensemble
 
+import joblib
+
+
+def train_model(iris_name, model, X, y):
+    """
+    Trains the given model based on the given features and outputs
+
+    iris_name -- Name of the iris flower that the model is trained to classify
+    model -- The model to train
+    X -- The feature data values
+    y -- The output values
+    """
+    model.fit(X, y)
+
+    pkl_filename = "../models/trained_iris_{}_model.pkl".format(iris_name)
+    joblib.dump(model, pkl_filename)
+
+
 # Load CSV data set into a pandas dataframe
 iris_df = pd.read_csv('../iris.csv')
 
@@ -58,3 +76,7 @@ virginica_model = ensemble.GradientBoostingRegressor(
     max_features=0.1,
     loss='huber'
 )
+
+train_model("setosa", setosa_model, X_setosa_train, y_setosa_train)
+train_model("versicolor", versicolor_model, X_versicolor_train, y_versicolor_train)
+train_model("virginica", virginica_model, X_virginica_train, y_virginica_train)
