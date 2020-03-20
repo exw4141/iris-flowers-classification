@@ -1,5 +1,6 @@
 from sklearn.externals import joblib
 
+# Run create_iris_model.py before executing this file so that the models are created
 setosa_model = joblib.load('../models/trained_iris_setosa_model.pkl')
 versicolor_model = joblib.load('../models/trained_iris_versicolor_model.pkl')
 virginica_model = joblib.load('../models/trained_iris_virginica_model.pkl')
