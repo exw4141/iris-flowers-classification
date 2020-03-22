@@ -4,6 +4,8 @@ An introductory project allowing me to get into machine learning and
 supervised learning. Gradient boosting is used to create models that 
 could classify a flower to be one out of three specific types of irises.
 
+Data set used: [Iris Data Set](http://archive.ics.uci.edu/ml/datasets/Iris)
+
 Software used:  
 1. [Anaconda](https://www.anaconda.com/distribution/) - The installation of 
 Anaconda should automatically install the following software as well. If 
